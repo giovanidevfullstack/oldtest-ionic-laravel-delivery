@@ -16,8 +16,4 @@ Route::get('/', function () {
 });
 
 
-//test repository
-Route::get('test', function (){
-    $repository = app()->make('Delivery\Repositories\ProductRepository');
-    return $repository->all();
-});
+Route::get('admin/categories','CategoriesController@index');
