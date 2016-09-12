@@ -26,7 +26,7 @@ class ProductsController extends Controller
         return view('admin.products.create');
     }
 
-    public function store(AdminCategoryRequest $request){
+    public function store(AdminProductsRequest $request){
         $data = $request->all();
         $this->repository->create($data);
 
@@ -34,9 +34,9 @@ class ProductsController extends Controller
     }
 
     public function edit($id){
-        $products = $this->repository->find($id);
+        $product = $this->repository->find($id);
 
-        return view('admin.products.edit', compact('products'));
+        return view('admin.products.edit', compact('product'));
     }
 
     public function update(AdminCategoryRequest $request, $id){
