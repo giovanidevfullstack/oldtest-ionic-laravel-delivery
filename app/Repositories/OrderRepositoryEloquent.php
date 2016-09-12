@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\OrderRepository;
-use App\Models\Order;
-use App\Validators\OrderValidator;
+use Delivery\Repositories\OrderRepository;
+use Delivery\Models\Order;
+use Delivery\Validators\OrderValidator;
 
 /**
  * Class OrderRepositoryEloquent

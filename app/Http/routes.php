@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+//test repository
+Route::get('test', function (){
+    $repository = app()->make('Delivery\Repositories\ProductRepository');
+    return $repository->all();
+});

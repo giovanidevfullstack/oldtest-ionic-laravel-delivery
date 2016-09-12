@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ClientRepository;
-use App\Models\Client;
-use App\Validators\ClientValidator;
+use Delivery\Repositories\ClientRepository;
+use Delivery\Models\Client;
+use Delivery\Validators\ClientValidator;
 
 /**
  * Class ClientRepositoryEloquent

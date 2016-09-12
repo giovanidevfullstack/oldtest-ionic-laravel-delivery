@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\CategoryRepository;
-use App\Models\Category;
-use App\Validators\CategoryValidator;
+use Delivery\Repositories\CategoryRepository;
+use Delivery\Models\Category;
+use Delivery\Validators\CategoryValidator;
 
 /**
  * Class CategoryRepositoryEloquent
@@ -23,8 +23,6 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     {
         return Category::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria

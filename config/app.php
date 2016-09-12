@@ -146,6 +146,7 @@ return [
         Delivery\Providers\AuthServiceProvider::class,
         Delivery\Providers\EventServiceProvider::class,
         Delivery\Providers\RouteServiceProvider::class,
+        Delivery\Providers\RepositoryServiceProvider::class,
 
     ],
 

@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Repositories\ProductRepository;
-use App\Models\Product;
-use App\Validators\ProductValidator;
+use Delivery\Repositories\ProductRepository;
+use Delivery\Models\Product;
+use Delivery\Validators\ProductValidator;
 
 /**
  * Class ProductRepositoryEloquent
@@ -23,8 +23,6 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     {
         return Product::class;
     }
-
-    
 
     /**
      * Boot up the repository, pushing criteria
