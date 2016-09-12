@@ -1,11 +1,15 @@
 <?php
 
-namespace Delivery\Models;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Prettus\Repository\Contracts\Transformable;
+use Prettus\Repository\Traits\TransformableTrait;
 
-class Product extends Model
+class Product extends Model implements Transformable
 {
+    use TransformableTrait;
+
     protected $fillable = [
         'category_id',
         'name',
@@ -16,4 +20,5 @@ class Product extends Model
     public function category(){
         return $this->belongsTo(Product::class);
     }
+
 }
