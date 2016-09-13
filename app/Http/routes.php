@@ -6,7 +6,8 @@ Route::get('/', function () {
 
 
 Route::group(['prefix'=>'admin',
-              'as'=>'admin.'], function (){
+              'as'=>'admin.',
+              'middleware'=>'auth.checkrole'], function (){
 
     //categories crud
     Route::group(['prefix'=>'categories',
