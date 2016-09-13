@@ -6,14 +6,14 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Delivery\Repositories\CategoryRepository;
 use Delivery\Models\Category;
-use Delivery\Validators\CategoryValidator;
 
 /**
  * Class CategoryRepositoryEloquent
- * @package namespace App\Repositories;
+ * @package namespace Delivery\Repositories;
  */
 class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepository
 {
+
     /**
      * Specify Model class name
      *
@@ -31,4 +31,6 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
     {
         $this->pushCriteria(app(RequestCriteria::class));
     }
+
+
 }

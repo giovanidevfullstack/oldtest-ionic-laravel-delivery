@@ -6,7 +6,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Delivery\Repositories\ProductRepository;
 use Delivery\Models\Product;
-use Delivery\Validators\ProductValidator;
 
 /**
  * Class ProductRepositoryEloquent
@@ -14,6 +13,7 @@ use Delivery\Validators\ProductValidator;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
+
     /**
      * Specify Model class name
      *
