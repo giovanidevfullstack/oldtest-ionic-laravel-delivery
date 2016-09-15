@@ -26,7 +26,7 @@ class AdminClientRequest extends Request
         return [
             'name'=>'required|min:3',
             'email'=>'required|email',
-            'password'=>'required|min:3',
+           // 'password'=>'required|min:3', //only in create
             'phone'=>'required',
             'address'=>'required',
             'city'=>'required',

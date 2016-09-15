@@ -3,6 +3,7 @@
 namespace Delivery\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 use Illuminate\Auth\Authenticatable;
@@ -17,7 +18,11 @@ class User extends Model implements Transformable,
                                     AuthorizableContract,
                                     CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, TransformableTrait;
+    use Authenticatable,
+        Authorizable,
+        CanResetPassword,
+        TransformableTrait,
+        SoftDeletes;
 
     public function client(){
         return $this->hasOne(Client::class);

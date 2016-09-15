@@ -70,16 +70,44 @@ class ClientsController extends Controller
     }
 
     public function update(AdminClientRequest $request, $id){
-        /*$data = $request->all();
-        $this->clientsRepository->update($data, $id);
+        $name = $request->input('name');
+        $email = $request->input('email');
+        //$password = $request->input('password');
+        $phone = $request->input('phone');
+        $address = $request->input('address');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $zipcode = $request->input('zipcode');
 
-        return redirect()->route('admin.clients.index');*/
+        $user = [
+            'name' => $name,
+            'email' => $email
+        ];
+
+        $user_id = $this->clientsRepository->find($id)->user_id;
+
+        $this->userRepository->update($user,$user_id);
+
+        $client = [
+            'phone' => $phone,
+            'address' => $address,
+            'city' => $city,
+            'state' => $state,
+            'zipcode' => $zipcode
+        ];
+
+        $this->clientsRepository->update($client,$id);
+
+        return redirect()->route('admin.clients.index');
     }
 
     public function destroy($id){
-        /*$this->clientsRepository->delete($id);
+        $user_id = $this->clientsRepository->find($id)->user_id;
 
-        return redirect()->route('admin.clients.index');*/
+        $this->userRepository->delete($user_id);
+        $this->clientsRepository->delete($id);
+
+        return redirect()->route('admin.clients.index');
     }
 
 }
