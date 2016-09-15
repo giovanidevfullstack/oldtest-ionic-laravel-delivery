@@ -14,6 +14,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Nome</th>
+                    <th>E-mail</th>
                     <th>Telefone</th>
                     <th>Cidade</th>
                     <th>Ação</th>
@@ -25,6 +26,7 @@
                 <tr>
                     <td>{{ $client->id }}</td>
                     <td>{{ $client->user->name }}</td>
+                    <td>{{ $client->user->email }}</td>
                     <td>{{ $client->phone }}</td>
                     <td>{{ $client->city }}</td>
                     <td>

@@ -11,6 +11,7 @@
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
+
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 	<!--[if lt IE 9]>
@@ -19,7 +20,7 @@
 	<![endif]-->
 </head>
 <body>
-	<nav class="navbar navbar-default">
+	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
@@ -37,6 +38,7 @@
 					<li><a href="{{ route('admin.categories.index') }}">Categorias</a></li>
 					<li><a href="{{ route('admin.products.index') }}">Produtos</a></li>
 					<li><a href="{{ route('admin.clients.index') }}">Clientes</a></li>
+					<li><a href="{{ route('admin.orders.index') }}">Pedidos</a></li>
 				</ul>
 
 				<ul class="nav navbar-nav navbar-right">

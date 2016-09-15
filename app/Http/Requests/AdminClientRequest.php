@@ -23,15 +23,19 @@ class AdminClientRequest extends Request
      */
     public function rules()
     {
-        return [
-            'name'=>'required|min:3',
-            'email'=>'required|email',
-           // 'password'=>'required|min:3', //only in create
-            'phone'=>'required',
-            'address'=>'required',
-            'city'=>'required',
-            'state'=>'required',
-            'zipcode'=>'required'
-        ];
+        $action = $this->route()->getName();
+
+        if (preg_match('/update/',$action)){
+            return [
+                'name'=>'required|min:3',
+                'email'=>'required|email'
+            ];
+        }else{
+            return [
+                'name'=>'required|min:3',
+                'email'=>'required|email',
+                'password'=>'required|min:3' //only in create
+            ];
+        }
     }
 }
