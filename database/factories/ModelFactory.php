@@ -44,3 +44,15 @@ $factory->define(Delivery\Models\Client::class, function (Faker\Generator $faker
     ];
 });
 
+$factory->define(Delivery\Models\Order::class, function (Faker\Generator $faker){
+    return [
+        'client_id' => rand(1,10),
+        'total' => $faker->numberBetween(50, 100),
+        'status' => 0
+    ];
+});
+
+$factory->define(Delivery\Models\OrderItem::class, function (Faker\Generator $faker){
+    return [];
+});
+

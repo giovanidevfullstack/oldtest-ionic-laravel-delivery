@@ -4,9 +4,7 @@ namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Delivery\Repositories\UserRepository;
 use Delivery\Models\User;
-use Delivery\Validators\UserValidator;
 
 /**
  * Class UserRepositoryEloquent
@@ -24,7 +22,9 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
         return User::class;
     }
 
-    
+    public function getDeliverymen(){
+        return $this->findWhere(['role'=>'deliveryman'])->lists('name','id');
+    }
 
     /**
      * Boot up the repository, pushing criteria

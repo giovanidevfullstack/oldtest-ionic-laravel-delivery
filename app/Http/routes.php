@@ -44,6 +44,7 @@ Route::group(['prefix'=>'admin',
     Route::group(['prefix'=>'orders',
                   'as'=>'orders.'], function (){
         Route::get('',['as'=>'index','uses'=>'OrdersController@index']);
-
+        Route::get('/{id}',['as'=>'edit','uses'=>'OrdersController@edit']);
+        Route::post('update/{id}',['as'=>'update','uses'=>'OrdersController@update']);
     });
 });
