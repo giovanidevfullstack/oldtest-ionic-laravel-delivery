@@ -4,7 +4,6 @@ namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Delivery\Repositories\ProductRepository;
 use Delivery\Models\Product;
 
 /**
@@ -13,6 +12,12 @@ use Delivery\Models\Product;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
+
+    public function lists($column, $key = null)
+    {
+        return $this->model->get(['id','name','price']);
+
+    }
 
     /**
      * Specify Model class name

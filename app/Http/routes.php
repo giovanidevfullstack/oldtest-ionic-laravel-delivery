@@ -4,9 +4,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/home', function () {
+    return view('welcome');
+});
+
 Route::group(['prefix'=>'admin',
               'as'=>'admin.',
-              'middleware'=>'auth.checkrole'], function (){
+              'middleware'=>'auth.checkrole:admin'], function (){
 
     //categories crud
     Route::group(['prefix'=>'categories',
@@ -55,4 +59,11 @@ Route::group(['prefix'=>'admin',
         Route::get('create',['as'=>'create','uses'=>'CupomsController@create']);
         Route::post('store}',['as'=>'store','uses'=>'CupomsController@store']);
     });
+});
+
+
+Route::group(['prefix'=>'custumer', 'middleware'=>'auth.checkrole:client', 'as'=>'custumer.'], function (){
+    Route::get('order',['as'=>'order.index', 'uses'=>'CheckoutController@index']);
+    Route::get('order/create',['as'=>'order.create', 'uses'=>'CheckoutController@create']);
+    Route::post('order/store',['as'=>'order.store', 'uses'=>'CheckoutController@store']);
 });
