@@ -47,4 +47,12 @@ Route::group(['prefix'=>'admin',
         Route::get('/{id}',['as'=>'edit','uses'=>'OrdersController@edit']);
         Route::post('update/{id}',['as'=>'update','uses'=>'OrdersController@update']);
     });
+
+    //cupoms
+    Route::group(['prefix'=>'cupoms',
+        'as'=>'cupoms.'], function (){
+        Route::get('',['as'=>'index','uses'=>'CupomsController@index']);
+        Route::get('create',['as'=>'create','uses'=>'CupomsController@create']);
+        Route::post('store}',['as'=>'store','uses'=>'CupomsController@store']);
+    });
 });
