@@ -63,3 +63,9 @@ $factory->define(Delivery\Models\Cupom::class, function (Faker\Generator $faker)
     ];
 });
 
+$factory->define(Delivery\Models\OAuthClient::class, function (Faker\Generator $faker){
+    return [
+        'secret' => bcrypt(str_random(10)),
+        'name' => $faker->word
+    ];
+});
