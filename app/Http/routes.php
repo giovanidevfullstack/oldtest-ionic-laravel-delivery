@@ -83,5 +83,10 @@ Route::group(['prefix'=>'api','middleware'=>'oauth', 'as'=>'api.'], function (){
     Route::group(['prefix'=>'deliveryman', 'middleware'=>'oauth.checkrole:deliveryman','as'=>'deliveryman.'], function (){
 
     });
+
+    Route::group(['prefix'=>'authenticated', 'as'=>'authenticated.'], function (){
+        Route::resource('user',
+            'Api\Authenticated\AuthenticatedController',['except' => ['create', 'edit', 'destroy']]);
+    });
 });
 
