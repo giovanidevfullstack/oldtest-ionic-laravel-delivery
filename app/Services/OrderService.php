@@ -2,6 +2,7 @@
 
 namespace Delivery\Services;
 
+use Delivery\Models\Order;
 use Delivery\Repositories\CupomRepository;
 use Delivery\Repositories\OrderRepository;
 use Delivery\Repositories\ProductRepository;
@@ -67,5 +68,15 @@ class OrderService
             \DB::rollback();
             throw $e;
         }
+    }
+
+    public function updateStatus($id, $idDeliveryman, $status){
+        $order = $this->orderRepository->getByIdAndDeliveryman($id,$idDeliveryman);
+        if($order instanceof Order){
+            $order->status = $status;
+            $order->save();
+            return $order;
+        }
+        return false;
     }
 }

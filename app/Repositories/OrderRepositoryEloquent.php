@@ -2,11 +2,10 @@
 
 namespace Delivery\Repositories;
 
+use Illuminate\Database\Eloquent\Collection;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Delivery\Repositories\OrderRepository;
 use Delivery\Models\Order;
-use Delivery\Validators\OrderValidator;
 
 /**
  * Class OrderRepositoryEloquent
@@ -14,6 +13,22 @@ use Delivery\Validators\OrderValidator;
  */
 class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
 {
+
+    public function getByIdAndDeliveryman($id, $idDeliveryman){
+        $result = $this->with(['client','items','cupom'])->findWhere(['id'=>$id,
+                                    'user_deliveryman_id'=>$idDeliveryman]);
+
+        if($result instanceof Collection){
+            $result = $result->first();
+            if($result){
+                $result->items->each(function ($item){
+                    $item->product;
+                });
+            }
+        }
+        return $result;
+    }
+
     /**
      * Specify Model class name
      *
@@ -24,13 +39,16 @@ class OrderRepositoryEloquent extends BaseRepository implements OrderRepository
         return Order::class;
     }
 
-    
-
-    /**
+     /**
      * Boot up the repository, pushing criteria
      */
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return "Prettus\\Repository\\Presenter\\ModelFractalPresenter";
     }
 }
