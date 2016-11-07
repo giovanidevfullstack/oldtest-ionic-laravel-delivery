@@ -2,6 +2,7 @@
 
 namespace Delivery\Repositories;
 
+use Delivery\Presenters\UserPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Delivery\Models\User;
@@ -12,18 +13,20 @@ use Delivery\Models\User;
  */
 class UserRepositoryEloquent extends BaseRepository implements UserRepository
 {
+    protected $skipPresenter = true;
+
     /**
      * Specify Model class name
      *
      * @return string
      */
+    public function getDeliverymen(){
+        return $this->findWhere(['role'=>'deliveryman'])->lists('name','id');
+    }
+
     public function model()
     {
         return User::class;
-    }
-
-    public function getDeliverymen(){
-        return $this->findWhere(['role'=>'deliveryman'])->lists('name','id');
     }
 
     /**
@@ -32,5 +35,10 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return UserPresenter::class;
     }
 }

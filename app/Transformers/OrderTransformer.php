@@ -11,7 +11,7 @@ use Delivery\Models\Order;
  */
 class OrderTransformer extends TransformerAbstract
 {
-    protected $availableIncludes   = ['cupom','items'];
+    protected $availableIncludes   = ['cupom','items', 'client'];
 
     /**
      * Transform the \Order entity
@@ -22,9 +22,9 @@ class OrderTransformer extends TransformerAbstract
     public function transform(Order $model)
     {
         return [
-            'id'         => (int) $model->id,
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'total'         => $model->total,
+            'status'        => $model->status,
+            'created_at'    => $model->created_at
         ];
     }
 

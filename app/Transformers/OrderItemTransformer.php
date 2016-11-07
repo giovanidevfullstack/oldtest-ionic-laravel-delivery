@@ -11,6 +11,7 @@ use Delivery\Models\OrderItem;
  */
 class OrderItemTransformer extends TransformerAbstract
 {
+    protected $defaultIncludes = ['product'];
 
     /**
      * Transform the \OrderItem entity
@@ -21,12 +22,13 @@ class OrderItemTransformer extends TransformerAbstract
     public function transform(OrderItem $model)
     {
         return [
-            'id'         => (int) $model->id,
-
-            /* place your other model properties here */
-
-            'created_at' => $model->created_at,
-            'updated_at' => $model->updated_at
+            'price'         => $model->price,
+            'qtd'           => $model->qtd
         ];
+    }
+
+    public function includeProduct(OrderItem $order)
+    {
+        return $this->item($order->product, new ProductTransformer());
     }
 }
