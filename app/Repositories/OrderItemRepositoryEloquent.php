@@ -4,7 +4,6 @@ namespace Delivery\Repositories;
 
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use Delivery\Repositories\OrderItemRepository;
 use Delivery\Models\OrderItem;
 use Delivery\Validators\OrderItemValidator;
 
