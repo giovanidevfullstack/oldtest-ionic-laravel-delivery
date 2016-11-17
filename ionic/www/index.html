@@ -25,53 +25,20 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/query-string/query-string.js"></script>
+    <script src="lib/angular-oauth2/dist/angular-oauth2.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers/LoginCtrl.js"></script>
   </head>
   <body ng-app="starter">
-
-    <ion-pane>
-      <ion-header-bar align-title="center" class="bar-stable bar-calm">
-        <button class="button button-clear ion-android-menu"></button>
-        <h1 class="title">Delivery</h1>
-        <button class="button button-clear ion-android-cart"></button>
-      </ion-header-bar>
-      <ion-content class="padding">
-        <ion-list>
-          <ion-item>
-            Hello, 1
-          </ion-item>
-          <ion-item>
-            Hello, 2
-          </ion-item>
-          <ion-item>
-            Hello, 3
-          </ion-item>
-        </ion-list>
-
-        <button class="button button-positive button-block button-outline">Send</button>
-
-        <div class="tabs-striped tabs-color-balanced tabs-color-light">
-          <div class="tabs">
-            <a class="tab-item active" href="#">
-              <i class="icon ion-home"></i>
-              Test
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-star"></i>
-              Favorites
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-gear-a"></i>
-              Settings
-            </a>
-          </div>
-        </div>
-      </ion-content>
-    </ion-pane>
+    <ion-nav-bar class="bar bar-dark"></ion-nav-bar>
+    <ion-nav-view></ion-nav-view>
   </body>
 </html>
