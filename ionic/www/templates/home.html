@@ -1,6 +1,9 @@
 <ion-view>
     <ion-nav-title>Home</ion-nav-title>
     <ion-content class="padding">
-        <h1>Home</h1>
+        <form name="form" ng-submit="getUserAuth()">
+            <button type="submit" class="button button-block button-positive">Usuario autenticado</button>
+            <p>{{ userauth.data.data.name }}</p>
+        </form>
     </ion-content>
 </ion-view>

@@ -37,9 +37,7 @@ angular.module('starter', ['ionic','starter.controllers','angular-oauth2'])
         .state('home',{
             url: '/home',
             templateUrl: 'templates/home.html',
-            controller: function ($scope) {
-
-            }
+            controller: 'HomeCtrl'
         });
     //$urlRouterProvider.otherwise('/');
 });
