@@ -1,15 +1,22 @@
-angular.module('starter.controllers',[])
+angular.module('starter.controllers')
     .controller('HomeCtrl',[
         '$scope',
         '$state',
-        '$http', function ($scope, $state, $http) {
+        '$http',
+        'userAccessToken', function ($scope, $state, $http, userAccessToken) {
+            console.log("TOKEN    " + userAccessToken);
 
+            var url = 'http://localhost:8000/api/authenticated/user';
+            var bearer = "Bearer" + " " + userAccessToken;
+
+            console.log(bearer);
             $scope.userauth = {};
 
             $scope.getUserAuth = function () {
                 console.log("retorna usuario autenticado");
-                $http.get('http://localhost:8000/api/authenticated/user', {
-                    headers: {'Authorization': 'Bearer 6LKSpstSaCVbf5oXnqRsO6PTNmk4O9TnZIYiw9Vr'}
+                console.log("TOKEN  --  " + userAccessToken);
+                $http.get(url, {
+                    headers: {"Authorization": bearer}
                 }).then(function (data) {
                        console.log(data);
                        $scope.userauth = data;

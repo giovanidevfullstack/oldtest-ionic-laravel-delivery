@@ -23,6 +23,7 @@ class ProductTransformer extends TransformerAbstract
         return [
             'id'         => (int) $model->id,
             'name'       => $model->name,
+            'description'=> $model->description,
             'price'      => $model->price
         ];
     }

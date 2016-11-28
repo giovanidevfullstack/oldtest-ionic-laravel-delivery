@@ -13,8 +13,8 @@ class ClientTransformer extends TransformerAbstract
 {
 
     /**
-     * Transform the \Client entity
-     * @param \Client $model
+     * Transform the \client entity
+     * @param \client $model
      *
      * @return array
      */

@@ -2,6 +2,7 @@
 
 namespace Delivery\Repositories;
 
+use Delivery\Presenters\ProductPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Delivery\Models\Product;
@@ -12,6 +13,7 @@ use Delivery\Models\Product;
  */
 class ProductRepositoryEloquent extends BaseRepository implements ProductRepository
 {
+    protected $skipPresenter = true;
 
     public function lists($column, $key = null)
     {
@@ -35,5 +37,10 @@ class ProductRepositoryEloquent extends BaseRepository implements ProductReposit
     public function boot()
     {
         $this->pushCriteria(app(RequestCriteria::class));
+    }
+
+    public function presenter()
+    {
+        return ProductPresenter::class;
     }
 }
