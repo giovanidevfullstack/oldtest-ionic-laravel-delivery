@@ -9,12 +9,13 @@ angular.module('starter.controllers')
             var url = 'http://localhost:8000/api/authenticated/user';
             var bearer = "Bearer" + " " + userAccessToken;
 
-            console.log(bearer);
+            console.log("BEARER     " + bearer);
             $scope.userauth = {};
 
             $scope.getUserAuth = function () {
                 console.log("retorna usuario autenticado");
                 console.log("TOKEN  --  " + userAccessToken);
+
                 $http.get(url, {
                     headers: {"Authorization": bearer}
                 }).then(function (data) {

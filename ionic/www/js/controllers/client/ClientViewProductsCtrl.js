@@ -2,17 +2,28 @@ angular.module('starter.controllers')
 .controller('ClientViewProductsCtrl',[
     '$scope',
     '$state',
-    'appConfig',
-    '$resource', function ($scope, $state, appConfig,$resource) {
-        var products = $resource(appConfig.baseUrl + '/api/client/products',{},{
-            query: {
-                isArray: false
-            }
+    'ProductService',
+    '$ionicLoading',
+    '$cart',
+    '$localStorage', function ($scope, $state, ProductService, $ionicLoading, $cart, $localStorage) {
+
+        $scope.products = [];
+        $ionicLoading.show({
+            template: 'Carregando...'
         });
 
-        products.query({},function (data) {
-            console.log(data.data);
+        ProductService.query({},function (data) {
+            $scope.products = data.data;
+            $ionicLoading.hide();
+        },function (error) {
+            $ionicLoading.hide();
         });
+        
+        $scope.addItem = function (item) {
+            item.qtd = 1;
+            $cart.addItem(item);
+            $state.go('client.checkout');
+        }
     }
 ]);
 

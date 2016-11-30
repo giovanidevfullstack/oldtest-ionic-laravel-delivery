@@ -1,5 +1,6 @@
 angular.module('starter.controllers',[]);
-angular.module('starter', ['ionic','starter.controllers','angular-oauth2','ngResource'])
+angular.module('starter.services',[]);
+angular.module('starter', ['ionic','starter.controllers','starter.services','angular-oauth2','ngResource'])
 
 .value('userAccessToken', '')
 
@@ -48,12 +49,18 @@ angular.module('starter', ['ionic','starter.controllers','angular-oauth2','ngRes
         .state('client',{
             abstract: true,
             url: '/client',
-            template: '<ui-view/>'
+            template: '<ion-nav-view/>'
         })
         .state('client.checkout',{
+            cache: false,
             url: '/checkout',
             templateUrl: 'templates/client/checkout.html',
             controller: 'ClientCheckoutCtrl'
+        })
+        .state('client.checkout_successful',{
+            url: '/checkout_successful',
+            templateUrl: 'templates/client/checkout_successful.html',
+            controller: 'ClientCheckoutSuccessful'
         })
         .state('client.checkout_item_detail',{
             url: '/checkout/detail/:index',
