@@ -4,7 +4,7 @@ angular.module('starter.controllers')
         'OAuth',
         '$state',
         '$ionicPopup',
-        'userAccessToken',function ($scope, OAuth, $state, $ionicPopup, userAccessToken) {
+        '$localStorage',function ($scope, OAuth, $state, $ionicPopup, $localStorage) {
 
             $scope.user = {
                 username: '',
@@ -14,8 +14,8 @@ angular.module('starter.controllers')
             $scope.login = function () {
                 OAuth.getAccessToken($scope.user)
                     .then(function (data) {
-                        userAccessToken = data.data.access_token;
-                        console.log("TOKEN DO USER AUTH -> " + userAccessToken);
+                        $localStorage.set('TOKEN',data.data.access_token);
+                        console.log("LOCALSTORAGE TOKEN DO USER AUTH -> " + $localStorage.get('TOKEN'));
                         $state.go('home');
                     },function (ResponseError) {
                         $ionicPopup.alert({

@@ -3,19 +3,15 @@ angular.module('starter.controllers')
         '$scope',
         '$state',
         '$http',
-        'userAccessToken', function ($scope, $state, $http, userAccessToken) {
-            console.log("TOKEN    " + userAccessToken);
+        '$localStorage', function ($scope, $state, $http, $localStorage) {
 
+            var token = $localStorage.get('TOKEN');
             var url = 'http://localhost:8000/api/authenticated/user';
-            var bearer = "Bearer" + " " + userAccessToken;
+            var bearer = "Bearer" + " " + token;
 
-            console.log("BEARER     " + bearer);
             $scope.userauth = {};
 
             $scope.getUserAuth = function () {
-                console.log("retorna usuario autenticado");
-                console.log("TOKEN  --  " + userAccessToken);
-
                 $http.get(url, {
                     headers: {"Authorization": bearer}
                 }).then(function (data) {
