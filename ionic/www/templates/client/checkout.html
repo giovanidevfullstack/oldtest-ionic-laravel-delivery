@@ -3,10 +3,17 @@
     <div class="bar bar-subheader">
         <button class="button button-icon ion-plus" ng-click="openListProducts()"></button>
         <h2 class="title">Total: R$ {{total}}</h2>
-        <button class="button button-icon ion-minus-circled" ng-click="showDelete = !showDelete"></button>
+        <button class="button button-clear button-icon ion-minus-circled" ng-click="showDelete = !showDelete" ng-class="{'button-assertive':showDelete, '':!showDelete}">
+        </button>
     </div>
     <ion-content class="padding has-subheader">
         <ion-list show-delete="showDelete">
+            <ion-item class="item-royal item-icon-left" ng-show="cupom.value != null">
+                <span class="icon ion-close" ng-click="removeCupom()"></span>
+                <strong>Cupom</strong>
+                <span class="badge badge-royal">- R$ {{ cupom.value }}</span>
+            </ion-item>
+
             <ion-item ng-repeat="item in items track by $index" ng-click="openProductDetail($index)">
                 <h2>{{item.name }}</h2>
                 <div class="row">
@@ -21,6 +28,7 @@
                 <ion-delete-button class="ion ion-minus-circled" ng-click="removeItem($index)"></ion-delete-button>
             </ion-item>
         </ion-list>
+        <button class="button button-dark button-block" type="button" ng-click="readBarCode()" ng-disabled="cupom.value != null">Adicionar cupom</button>
         <button class="button button-balanced button-block" type="button" ng-click="save()">Salvar pedido</button>
     </ion-content>
 </ion-view>

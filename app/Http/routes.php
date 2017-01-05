@@ -94,6 +94,8 @@ Route::group(['middleware'=>'cors'],function (){
             Route::resource('user',
                 'Api\Authenticated\AuthenticatedController',['except' => ['create', 'edit', 'destroy']]);
         });
+
+        Route::get('cupom/{code}', 'Api\CupomController@show');
     });
 });
 

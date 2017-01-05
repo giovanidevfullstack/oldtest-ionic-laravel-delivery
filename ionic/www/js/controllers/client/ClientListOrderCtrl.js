@@ -26,7 +26,6 @@ angular.module('starter.controllers')
                             break;
                     }
                 }
-                console.log($scope.orders);
             },function (error) {});
 
 
@@ -35,12 +34,3 @@ angular.module('starter.controllers')
             };
         }
     ]);
-
-
-/*
-$list_status = [
-    0=>'pendente',
-    1=>'a caminho',
-    2=>'entregue'
-];
-*/
