@@ -2,7 +2,7 @@ angular.module('starter.controllers',[]);
 angular.module('starter.services',[]);
 angular.module('starter', ['ionic','starter.controllers','starter.services','angular-oauth2','ngResource'])
 
-.value('userAccessToken', '')
+.value('userAccessToken', ' ')
 
 .constant('appConfig',{
     baseUrl: 'http://localhost:8000'
@@ -51,6 +51,11 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
             url: '/client',
             template: '<ion-nav-view/>'
         })
+        .state('client.view_products',{
+            url: '/view_products',
+            templateUrl: 'templates/client/view_products.html',
+            controller: 'ClientViewProductsCtrl'
+        })
         .state('client.checkout',{
             cache: false,
             url: '/checkout',
@@ -67,10 +72,10 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
             templateUrl: 'templates/client/checkout_item_detail.html',
             controller: 'ClientCheckoutDetailCtrl'
         })
-        .state('client.view_products',{
-            url: '/view_products',
-            templateUrl: 'templates/client/view_products.html',
-            controller: 'ClientViewProductsCtrl'
+        .state('client.list_order',{
+            url: '/list_order:id',
+            templateUrl: 'templates/client/list_order.html',
+            controller: 'ClientListOrderCtrl'
         });
     //$urlRouterProvider.otherwise('/');
 });

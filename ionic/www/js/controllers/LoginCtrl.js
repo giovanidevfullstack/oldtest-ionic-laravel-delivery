@@ -15,7 +15,6 @@ angular.module('starter.controllers')
                 OAuth.getAccessToken($scope.user)
                     .then(function (data) {
                         $localStorage.set('TOKEN',data.data.access_token);
-                        console.log("LOCALSTORAGE TOKEN DO USER AUTH -> " + $localStorage.get('TOKEN'));
                         $state.go('home');
                     },function (ResponseError) {
                         $ionicPopup.alert({

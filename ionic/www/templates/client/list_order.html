@@ -1,0 +1,23 @@
+<ion-view>
+    <ion-nav-title>Lista de pedidos</ion-nav-title>
+    <div class="bar bar-subheader bar-royal">
+    </div>
+    <ion-content class="padding has-subheader">
+        <ion-list>
+            <ion-item ng-repeat="order in orders track by $index">
+                <div class="row">
+                    <h2>Status: {{ " " + order.status }}</h2>
+                </div>
+                <div class="row">
+                    <h2>Quant:  {{ " " + order.itemQtd }}</h2>
+                </div><div class="row">
+                    <h2>Data: {{ order.created_at.date }}</h2>
+                </div>
+            </ion-item>
+
+            <button class="button button-outline button-calm button-block" type="button" ng-click="goHome()">
+                Home
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-view>
