@@ -15,12 +15,13 @@ angular.module('starter.controllers')
                 OAuth.getAccessToken($scope.user)
                     .then(function (data) {
                         $localStorage.set('TOKEN',data.data.access_token);
-                        $state.go('home');
+                        $state.go('client.view_products');
                     },function (ResponseError) {
                         $ionicPopup.alert({
                             title:   'Alert',
                             template: 'Login e/ou senha inválidos'
                         });
+                        console.log(ResponseError);
                     });
             }
         }]);

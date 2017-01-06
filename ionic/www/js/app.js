@@ -20,7 +20,7 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
   });
 })
 
-.config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig) {
+.config(function ($stateProvider, $urlRouterProvider, OAuthProvider, OAuthTokenProvider, appConfig, $provide) {
     OAuthProvider.configure({
         baseUrl: appConfig.baseUrl,
         clientId: 'appid01',
@@ -77,5 +77,35 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
             templateUrl: 'templates/client/list_order.html',
             controller: 'ClientListOrderCtrl'
         });
-    //$urlRouterProvider.otherwise('/');
+    $urlRouterProvider.otherwise('/login');
+
+    $provide.decorator('OAuthToken',['$localStorage','$delegate', function ($localStorage,$delegate) {
+        Object.defineProperties($delegate,{
+            setToken:{
+                value: function (data) {
+                    return $localStorage.setObject('token',data);
+                },
+                enumerable: true,
+                configurable: true,
+                writable: true
+            },
+            getToken:{
+                value: function () {
+                    return $localStorage.getObject('token');
+                },
+                enumerable: true,
+                configurable: true,
+                writable: true
+            },
+            removeToken:{
+                value: function () {
+                    $localStorage.setObject('token',null);
+                },
+                enumerable: true,
+                configurable: true,
+                writable: true
+            }
+        });
+        return $delegate;
+    }]);
 });
