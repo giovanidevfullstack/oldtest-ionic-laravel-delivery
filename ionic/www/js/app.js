@@ -47,7 +47,8 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
         .state('client',{
             abstract: true,
             url: '/client',
-            template: '<ion-nav-view/>'
+            templateUrl: 'templates/client/menu.html',
+            controller: 'ClientMenuCtrl'
         })
         .state('client.view_products',{
             url: '/view_products',

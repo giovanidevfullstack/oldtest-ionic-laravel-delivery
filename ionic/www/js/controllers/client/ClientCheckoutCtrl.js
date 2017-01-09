@@ -1,7 +1,7 @@
 angular.module('starter.controllers')
 .controller('ClientCheckoutCtrl',[
-        '$scope','$state','$cart','OrderService','$ionicLoading','$ionicPopup','CupomService','$cordovaBarcodeScanner',
-        function ($scope, $state, $cart, OrderService, $ionicLoading, $ionicPopup, CupomService, $cordovaBarcodeScanner) {
+        '$scope','$state','$cart','OrderService','$ionicLoading','$ionicPopup','CupomService','$cordovaBarcodeScanner','UserService',
+        function ($scope, $state, $cart, OrderService, $ionicLoading, $ionicPopup, CupomService, $cordovaBarcodeScanner, UserService) {
 
             var cart = $cart.get();
             $scope.items = cart.items;

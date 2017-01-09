@@ -18,11 +18,8 @@ class AuthenticatedController extends Controller
 
     public function index(){
         $id = Authorizer::getResourceOwnerId();
-        $user = $this->userRepository
-                     ->skipPresenter(false)
-                     ->find($id);
 
-        return $user;
+        return $this->userRepository->skipPresenter(false)->find($id);
     }
 
 }
