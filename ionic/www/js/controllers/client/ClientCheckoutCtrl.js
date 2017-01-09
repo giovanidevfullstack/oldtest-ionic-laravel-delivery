@@ -1,12 +1,8 @@
 angular.module('starter.controllers')
 .controller('ClientCheckoutCtrl',[
-        '$scope',
-        '$state',
-        '$cart',
-        'OrderService',
-        '$ionicLoading',
-        '$ionicPopup',
-        'CupomService', function ($scope, $state, $cart, OrderService, $ionicLoading, $ionicPopup,CupomService) {
+        '$scope','$state','$cart','OrderService','$ionicLoading','$ionicPopup','CupomService','$cordovaBarcodeScanner',
+        function ($scope, $state, $cart, OrderService, $ionicLoading, $ionicPopup, CupomService, $cordovaBarcodeScanner) {
+
             var cart = $cart.get();
             $scope.items = cart.items;
             $scope.total = $cart.getTotalFinal();
@@ -30,9 +26,20 @@ angular.module('starter.controllers')
                 var o = {
                     items : angular.copy($scope.items)
                 };
+
                 angular.forEach(o.items, function (item) {
                    item.product_id = item.id;
                 });
+
+                if($scope.cupom.value > $scope.total){
+                    console.log($scope.cupom.value);
+                    console.log($scope.total);
+                    $ionicPopup.alert({
+                        title:   'Alerta!',
+                        template: 'Valor do cupom maior que a compra!'
+                    });
+                    return false;
+                }
 
                 $ionicLoading.show({
                     template: 'Carregando...!'
@@ -41,13 +48,10 @@ angular.module('starter.controllers')
                 if ($scope.cupom.value){
                     o.cupom_code = $scope.cupom.code;
                 }
-
-                OrderService.save({id: null},o
-                ,function (data) {
+                OrderService.save({id: null},o ,function (data) {
                     $ionicLoading.hide();
                     $state.go('client.checkout_successful');
-                },
-                function (responseError) {
+                },function (responseError) {
                     $ionicLoading.hide();
                     $ionicPopup.alert({
                         title:   'Alerta!',
@@ -57,7 +61,17 @@ angular.module('starter.controllers')
             };
             
             $scope.readBarCode = function () {
-                getValueCupom(831);
+                $cordovaBarcodeScanner
+                    .scan()
+                    .then(function(barcodeData) {
+                        getValueCupom(barcodeData.text);
+                    }, function(error) {
+                       console.log(error);
+                       $ionicPopup.alert({
+                           title:   'Erro!',
+                           template: 'QR inválido!'
+                       });
+                    });
             };
 
             $scope.removeCupom = function () {
