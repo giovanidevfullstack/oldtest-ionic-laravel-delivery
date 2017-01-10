@@ -12,25 +12,29 @@ angular.module('starter.controllers')
 
                 for (var i in $scope.orders){
                     var itemsOrder = $scope.orders[i].items;
+                    var order = $scope.orders[i];
+
                     $scope.orders[i].itemQtd = itemsOrder.data.length;
 
-                    switch (i) {
-                        case '0':
+                    switch (order.status) {
+                        case 0:
                             $scope.orders[i].status = 'pendente';
                             break;
-                        case '1':
+                        case 1:
                             $scope.orders[i].status = 'a caminho';
                             break;
-                        case '2':
+                        case 2:
                             $scope.orders[i].status = 'entregue';
                             break;
                     }
                 }
-            },function (error) {});
+            },function (error) {
+                console.log(error);
+            });
 
 
-            $scope.goHome = function () {
-                $state.go('home');
+            $scope.goViewProducts = function () {
+                $state.go('client.view_products');
             };
         }
     ]);

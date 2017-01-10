@@ -3,7 +3,7 @@ angular.module('starter.services',[]);
 angular.module('starter', ['ionic','starter.controllers','starter.services','angular-oauth2','ngResource','ngCordova'])
 
 .constant('appConfig',{
-    baseUrl: 'http://192.168.0.2:8000' //localhost
+    baseUrl: 'http://192.168.181.2:8000' //localhost
 })
 
 .run(function($ionicPlatform) {

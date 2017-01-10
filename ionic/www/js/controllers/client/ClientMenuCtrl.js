@@ -1,6 +1,8 @@
 angular.module('starter.controllers')
     .controller('ClientMenuCtrl',[
-        '$scope','UserService','$ionicLoading', function ($scope, UserService, $ionicLoading) {
+        '$scope','UserService','$ionicLoading','$state',
+        function ($scope, UserService, $ionicLoading, $state) {
+
             $scope.user = {
                 name: ''
             };
@@ -14,6 +16,7 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
             },function (Error) {
                 console.log(Error);
+                $ionicLoading.hide();
             });
         }
     ]);
