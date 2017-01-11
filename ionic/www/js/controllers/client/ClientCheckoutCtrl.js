@@ -74,6 +74,10 @@ angular.module('starter.controllers')
                     });
             };
 
+            /*$scope.readBarCode = function () {
+                getValueCupom('000');
+            };*/
+
             $scope.removeCupom = function () {
                 $cart.removeCupom();
                 $scope.cupom = $cart.get().cupom;

@@ -51,6 +51,7 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
             controller: 'ClientMenuCtrl'
         })
         .state('client.view_products',{
+            cache: false,
             url: '/view_products',
             templateUrl: 'templates/client/view_products.html',
             controller: 'ClientViewProductsCtrl'
