@@ -1,6 +1,8 @@
 angular.module('starter.controllers',[]);
 angular.module('starter.services',[]);
-angular.module('starter', ['ionic','starter.controllers','starter.services','angular-oauth2','ngResource','ngCordova'])
+angular.module('starter.filters',[]);
+angular.module('starter', ['ionic','starter.controllers','starter.services', 'starter.filters',
+                           'angular-oauth2','ngResource','ngCordova'])
 
 .constant('appConfig',{
     baseUrl: 'http://192.168.181.2:8000' //localhost
@@ -73,9 +75,31 @@ angular.module('starter', ['ionic','starter.controllers','starter.services','ang
             controller: 'ClientCheckoutDetailCtrl'
         })
         .state('client.list_order',{
-            url: '/list_order:id',
+            url: '/list_order',
             templateUrl: 'templates/client/list_order.html',
             controller: 'ClientListOrderCtrl'
+        })
+        .state('client.view_order',{
+            url: '/view_order:id',
+            templateUrl: 'templates/client/view_order.html',
+            controller: 'ClientViewOrderCtrl'
+        })
+        .state('deliveryman',{
+            abstract: true,
+            url: '/deliveryman',
+            templateUrl: 'templates/deliveryman/menu.html',
+            controller: 'DeliverymanMenuCtrl'
+        })
+        .state('deliveryman.order',{
+            url: '/order',
+            templateUrl: 'templates/deliveryman/order.html',
+            controller: 'DeliverymanOrderCtrl'
+        })
+        .state('deliveryman.view_order',{
+            cache: false,
+            url: '/view_order/:id',
+            templateUrl: 'templates/deliveryman/view_order.html',
+            controller: 'DeliverymanViewOrderCtrl'
         });
     $urlRouterProvider.otherwise('/login');
 

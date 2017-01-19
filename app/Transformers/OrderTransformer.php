@@ -2,6 +2,7 @@
 
 namespace Delivery\Transformers;
 
+use Illuminate\Database\Eloquent\Collection;
 use League\Fractal\TransformerAbstract;
 use Delivery\Models\Order;
 
@@ -22,10 +23,22 @@ class OrderTransformer extends TransformerAbstract
     public function transform(Order $model)
     {
         return [
+            'id'            => $model->id,
             'total'         => $model->total,
+            'product_names' => $this->getArrayProductNames($model->items),
             'status'        => $model->status,
             'created_at'    => $model->created_at
         ];
+    }
+
+    protected function getArrayProductNames(Collection $items){
+        $names = [];
+
+        foreach ($items as $item){
+            $names[] = $item->product->name;
+        }
+
+        return $names;
     }
 
     public function includeClient(Order $order)

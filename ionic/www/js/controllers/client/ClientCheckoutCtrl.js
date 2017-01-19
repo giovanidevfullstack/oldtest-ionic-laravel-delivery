@@ -32,8 +32,6 @@ angular.module('starter.controllers')
                 });
 
                 if($scope.cupom.value > $scope.total){
-                    console.log($scope.cupom.value);
-                    console.log($scope.total);
                     $ionicPopup.alert({
                         title:   'Alerta!',
                         template: 'Valor do cupom maior que a compra!'
@@ -48,6 +46,7 @@ angular.module('starter.controllers')
                 if ($scope.cupom.value){
                     o.cupom_code = $scope.cupom.code;
                 }
+
                 OrderService.save({id: null},o ,function (data) {
                     $ionicLoading.hide();
                     $state.go('client.checkout_successful');
