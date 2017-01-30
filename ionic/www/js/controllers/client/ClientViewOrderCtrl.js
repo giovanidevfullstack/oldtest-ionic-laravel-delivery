@@ -1,14 +1,14 @@
 angular.module('starter.controllers')
     .controller('ClientViewOrderCtrl',[
-        '$scope', '$stateParams', 'OrderService', '$ionicLoading',
-        function ($scope, $stateParams, OrderService, $ionicLoading) {
+        '$scope', '$stateParams', 'ClientOrderService', '$ionicLoading',
+        function ($scope, $stateParams, ClientOrderService, $ionicLoading) {
             $scope.order = {};
 
             $ionicLoading.show({
                 template: 'Carregando...'
             });
 
-            OrderService.get({
+            ClientOrderService.get({
                 id: $stateParams.id,
                 include: "items,cupom"
             }, function (data) {
