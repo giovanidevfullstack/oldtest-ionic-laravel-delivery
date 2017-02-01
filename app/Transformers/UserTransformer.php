@@ -19,6 +19,7 @@ class UserTransformer extends TransformerAbstract
      * @param \User $model     *
      * @return array
      */
+
     public function transform(User $model)
     {
         return [

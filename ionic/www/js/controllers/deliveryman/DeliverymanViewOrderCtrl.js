@@ -15,6 +15,7 @@ angular.module('starter.controllers')
                 $scope.order = data.data;
                 $ionicLoading.hide();
             },function (error) {
+                console.debug(error);
                 $ionicLoading.hide();
             });
         }

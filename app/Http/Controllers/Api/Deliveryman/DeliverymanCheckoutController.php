@@ -44,9 +44,9 @@ class DeliverymanCheckoutController extends Controller
        return $orders;
     }
 
-    public function show($idDeliveryman)
+    public function show($id)
     {
-        $id = Authorizer::getResourceOwnerId();
+        $idDeliveryman = Authorizer::getResourceOwnerId();
         return $this->orderRepository
                ->skipPresenter(false)
                ->getByIdAndDeliveryman($id, $idDeliveryman);
