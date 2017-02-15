@@ -2,7 +2,7 @@ angular.module('starter.controllers',[]);
 angular.module('starter.services',[]);
 angular.module('starter.filters',[]);
 angular.module('starter', ['ionic','starter.controllers','starter.services', 'starter.filters',
-                           'angular-oauth2','ngResource','ngCordova'])
+                           'angular-oauth2','ngResource','ngCordova','uiGmapgoogle-maps'])
 
 .constant('appConfig',{
     baseUrl: 'http://192.168.0.4:8000' //localhost
@@ -81,9 +81,15 @@ angular.module('starter', ['ionic','starter.controllers','starter.services', 'st
             controller: 'ClientListOrderCtrl'
         })
         .state('client.view_order',{
-            url: '/view_order:id',
+            url: '/view_order/:id',
             templateUrl: 'templates/client/view_order.html',
             controller: 'ClientViewOrderCtrl'
+        })
+        .state('client.view_delivery',{
+            cache: false,
+            url: '/view_delivery/:id',
+            templateUrl: 'templates/client/view_delivery.html',
+            controller: 'ClientViewDeliveryCtrl'
         })
         .state('deliveryman',{
             abstract: true,

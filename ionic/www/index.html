@@ -30,6 +30,9 @@
     <script src="lib/angular-cookies/angular-cookies.min.js"></script>
     <script src="lib/query-string/query-string.js"></script>
     <script src="lib/angular-oauth2/dist/angular-oauth2.min.js"></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
@@ -46,6 +49,7 @@
     <script src="js/controllers/client/ClientCheckoutSuccessful.js"></script>
     <script src="js/controllers/client/ClientListOrderCtrl.js"></script>
     <script src="js/controllers/client/ClientViewOrderCtrl.js"></script>
+    <script src="js/controllers/client/ClientViewDeliveryCtrl.js"></script>
     <script src="js/controllers/deliveryman/DeliverymanMenuCtrl.js"></script>
     <script src="js/controllers/deliveryman/DeliverymanOrderCtrl.js"></script>
     <script src="js/controllers/deliveryman/DeliverymanViewOrderCtrl.js"></script>
@@ -66,6 +70,8 @@
 
   <body ng-app="starter">
     <ion-nav-view></ion-nav-view>
+
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
   </body>
 
 </html>
