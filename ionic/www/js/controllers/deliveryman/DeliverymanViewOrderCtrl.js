@@ -2,7 +2,7 @@ angular.module('starter.controllers')
     .controller('DeliverymanViewOrderCtrl',[
         '$scope','DeliverymanOrderService','$ionicLoading','$stateParams','$cordovaGeolocation','$ionicPopup',
         function ($scope, DeliverymanOrderService, $ionicLoading, $stateParams, $cordovaGeolocation, $ionicPopup) {
-            var watch;
+            var watch, lat = null, long;
 
             $scope.order = {};
 
@@ -25,7 +25,7 @@ angular.module('starter.controllers')
                    title: 'Alerta',
                    template: 'Parar localização?'
                 }).then(function () {
-                    stopWatcPosition();
+                    stopWatchPosition();
                 });
 
                 DeliverymanOrderService.updateStatus({id: $stateParams.id}, {status: 1}, function () {
@@ -40,15 +40,21 @@ angular.module('starter.controllers')
                            //error
                        },
                        function (position) {
+                           if(!lat){
+                               lat = position.coords.latitude;
+                               long = position.coords.longitude;
+                           }else{
+                               long -= 0.0444;
+                           }
                            DeliverymanOrderService.geo({id: $stateParams.id},{
-                              lat:  position.coords.latitude,
-                              long: position.coords.longitude
+                              lat:  lat,
+                              long: long
                            });
                        });
                 });
             };
             
-            function stopWatcPosition() {
+            function stopWatchPosition() {
                 if(watch && typeof watch == 'object' && watch.hasOwnProperty('watchID')){
                     $cordovaGeolocation.clearWatch(watch.watchID);
                 }

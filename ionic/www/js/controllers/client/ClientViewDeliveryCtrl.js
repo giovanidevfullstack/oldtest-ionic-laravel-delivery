@@ -1,13 +1,13 @@
 angular.module('starter.controllers')
     .controller('ClientViewDeliveryCtrl',[
-        '$scope', '$stateParams', 'ClientOrderService', '$ionicLoading','$ionicPopup','UserData',
-        function ($scope, $stateParams, ClientOrderService, $ionicLoading,$ionicPopup, UserData) {
+        '$scope', '$stateParams', 'ClientOrderService', '$ionicLoading','$ionicPopup','UserData','$pusher','$window',
+        function ($scope, $stateParams, ClientOrderService, $ionicLoading,$ionicPopup, UserData, $pusher, $window) {
             $scope.order = {};
             $scope.markers = [];
             $scope.map = {
                 center:{
-                    latitude:  -30.060113,
-                    longitude: -51.2125218
+                    latitude:  0,
+                    longitude: 0
                 },
                 zoom: 14
             };
@@ -20,7 +20,7 @@ angular.module('starter.controllers')
                 $scope.order = data.data;
                 $ionicLoading.hide();
                 if(parseInt($scope.order.status,10) == 1){
-                    initMarkers();
+                    initMarkers($scope.order);
                 }else{
                     $ionicPopup.alert({
                         title: "Alerta",
@@ -31,13 +31,20 @@ angular.module('starter.controllers')
                 $ionicLoading.hide();
             });
 
-            function initMarkers() {
+            $scope.$watch('markers.lenght',function (value) {
+                if(value == 2){
+                    createBounds();
+                }
+            });
+
+            function initMarkers(order) {
                 var client  = UserData.get().client.data;
                 var address = client.zipcode + ', ' +
                               client.address + ', ' +
                               client.city    + '- ' +
                               client.state;
                 createMarkerClient(address);
+                watchPositionDeliveryman(order.hash);
             }
             
             function createMarkerClient(address) {
@@ -68,5 +75,55 @@ angular.module('starter.controllers')
                 });
 
             }
-        }
-    ]);
+
+            function watchPositionDeliveryman(channel) {
+                var pusher = $pusher(window.client);
+                var channel = pusher.subscribe(channel);
+
+                channel.bind('Delivery\\Events\\GetLocationDeliveryman',function (data){
+                    var lat = data.geo.lat, long = data.geo.long;
+
+                    if($scope.markers.length == 1 || $scope.markers.length == 0){
+                        $scope.markers.push({
+                            id: 'entregador',
+                            coords: {
+                                latitude: lat,
+                                longitude: long
+                            },
+                            options:{
+                                title: "entregador"
+                            }
+                        });
+                        return;
+                    }
+
+                    for(var key in $scope.markers){
+                        if($scope.markers[key].id == "entregador"){
+                            $scope.markers[key].coords = {
+                                latitude: lat,
+                                longitude: long
+                            };
+                        }
+                    }
+                });
+            }
+
+            function createBounds(){
+                var bounds = new google.maps.LatLngBounds();
+                var latlng;
+                angular.forEach($scope.markers, function (value) {
+                    latlng = new google.maps.LatLng(Number(value.coords.latitude),Number(value.coords.longitude));
+                    bounds.extend(latlng);
+                });
+                $scope.map.bounds = {
+                    northeast:{
+                        latitude: bounds.getNorthEast().lat(),
+                        longitude: bounds.getNorthEast().lng()
+                    },
+                    southwest: {
+                        latitude: bounds.getSouthWest().lat(),
+                        longitude: bounds.getSouthWest().lng()
+                    }
+                }
+            }
+    }]);

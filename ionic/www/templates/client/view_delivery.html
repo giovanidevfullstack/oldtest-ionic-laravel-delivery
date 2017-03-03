@@ -1,9 +1,8 @@
 <ion-view>
     <ion-nav-title>Entrega</ion-nav-title>
     <ion-content class="padding has-header">
-        <ui-gmap-google-map center="map.center" zoom="map.zoom" class="angular-google-map-container">
+        <ui-gmap-google-map center="map.center" zoom="map.zoom" bounds="map.bounds" class="angular-google-map-container">
             <ui-gmap-marker idkey="marker.id" coords="marker.coords" options="marker.options" ng-repeat="marker in markers">
-
             </ui-gmap-marker>
         </ui-gmap-google-map>
     </ion-content>
