@@ -1,24 +1,23 @@
 angular.module('starter.controllers')
     .controller('ClientViewDeliveryCtrl',[
-        '$scope', '$stateParams', 'ClientOrderService', '$ionicLoading','$ionicPopup','UserData','$pusher','$window',
-        function ($scope, $stateParams, ClientOrderService, $ionicLoading,$ionicPopup, UserData, $pusher, $window) {
+        '$scope', '$stateParams', 'ClientOrderService', '$ionicLoading','$ionicPopup','UserData','$pusher','$window','$map','uiGmapGoogleMapApi',
+        function ($scope, $stateParams, ClientOrderService, $ionicLoading,$ionicPopup, UserData, $pusher, $window, $map,uiGmapGoogleMapApi) {
             $scope.order = {};
             $scope.markers = [];
-            $scope.map = {
-                center:{
-                    latitude:  0,
-                    longitude: 0
-                },
-                zoom: 14
-            };
+            $scope.map = $map;
 
             $ionicLoading.show({
                 template: 'Carregando...'
             });
 
+            uiGmapGoogleMapApi.then(function (maps) {
+                $ionicLoading.hide();
+            },function () {
+                $ionicLoading.hide();
+            });
+
             ClientOrderService.get({id: $stateParams.id, include: "items, cupom"},function (data) {
                 $scope.order = data.data;
-                $ionicLoading.hide();
                 if(parseInt($scope.order.status,10) == 1){
                     initMarkers($scope.order);
                 }else{
@@ -27,8 +26,6 @@ angular.module('starter.controllers')
                         template: "Pedido não está em entrega"
                     });
                 }
-            },function (error) {
-                $ionicLoading.hide();
             });
 
             $scope.$watch('markers.lenght',function (value) {
@@ -126,4 +123,17 @@ angular.module('starter.controllers')
                     }
                 }
             }
-    }]);
+    }])
+.controller('CvdControlDescentralize',['$scope','$map',function ($scope,$map) {
+    $scope.map = $map;
+    $scope.fit = function () {
+        $scope.map.fit = !$scope.map.fit;
+    }
+}])
+.controller('CvdControlReload',['$scope','$window','$timeout',function ($scope,$window,$timeout) {
+    $scope.reload = function () {
+        $timeout(function () {
+            $window.location.reload(true);
+        },100);
+    }
+}]);
