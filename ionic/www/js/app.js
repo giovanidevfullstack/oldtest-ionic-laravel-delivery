@@ -1,7 +1,7 @@
 angular.module('starter.controllers',[]);
 angular.module('starter.services',[]);
 angular.module('starter.filters',[]);
-angular.module('starter', ['ionic','starter.controllers','starter.services', 'starter.filters',
+angular.module('starter', ['ionic','ionic.service.core','starter.controllers','starter.services', 'starter.filters',
                            'angular-oauth2','ngResource','ngCordova','uiGmapgoogle-maps','pusher-angular'])
 
 .constant('appConfig',{
