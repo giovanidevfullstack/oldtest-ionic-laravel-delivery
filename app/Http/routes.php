@@ -98,6 +98,8 @@ Route::group(['middleware'=>'cors'],function (){
                 'Api\Authenticated\AuthenticatedController',['except' => ['create', 'edit', 'destroy']]);
         });
 
+        Route::patch('device_token', 'Api\Authenticated\AuthenticatedController@updateDeviceToken');
+
         Route::get('cupom/{code}', 'Api\CupomController@show');
     });
 });

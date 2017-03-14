@@ -9,7 +9,7 @@ angular.module('starter', ['ionic','ionic.service.core','starter.controllers','s
     pusherKey: 'a0458ee1e52bb80fcf40'
 })
 
-.run(function($ionicPlatform, $window, appConfig) {
+.run(function($ionicPlatform, $window, appConfig, $localStorage) {
   //pusher init
   $window.client = new Pusher(appConfig.pusherKey);
 
@@ -21,6 +21,16 @@ angular.module('starter', ['ionic','ionic.service.core','starter.controllers','s
     if(window.StatusBar) {
       StatusBar.styleDefault();
     }
+    Ionic.io();
+    var push = new Ionic.Push({
+        debug: true,
+        onNotification: function (message) {
+            console.log(message);
+        }
+    });
+    push.register(function (token) {
+        $localStorage.set('device_token', token.token);
+    });
   });
 })
 
