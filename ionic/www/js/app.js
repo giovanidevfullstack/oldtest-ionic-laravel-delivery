@@ -26,6 +26,12 @@ angular.module('starter', ['ionic','ionic.service.core','starter.controllers','s
         debug: true,
         onNotification: function (message) {
             console.log(message);
+            alert(message);
+        },
+        pluginConfig: {
+            android: {
+                iconColor: "blue"
+            }
         }
     });
     push.register(function (token) {
