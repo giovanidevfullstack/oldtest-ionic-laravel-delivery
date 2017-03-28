@@ -53,7 +53,13 @@ angular.module('starter.controllers')
                        });
                 });
             };
-            
+
+            $scope.endDelivery = function () {
+                DeliverymanOrderService.updateStatus({id: $stateParams.id}, {status: 2}, function () {
+                    stopWatchPosition();
+                });
+            };
+
             function stopWatchPosition() {
                 if(watch && typeof watch == 'object' && watch.hasOwnProperty('watchID')){
                     $cordovaGeolocation.clearWatch(watch.watchID);

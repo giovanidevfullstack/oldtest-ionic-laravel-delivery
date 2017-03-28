@@ -26,7 +26,7 @@ angular.module('starter', ['ionic','ionic.service.core','starter.controllers','s
         debug: true,
         onNotification: function (message) {
             console.log(message);
-            alert(message);
+            alert(message.text);
         },
         pluginConfig: {
             android: {
