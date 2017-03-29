@@ -56,6 +56,7 @@ angular.module('starter.controllers')
 
             $scope.endDelivery = function () {
                 DeliverymanOrderService.updateStatus({id: $stateParams.id}, {status: 2}, function () {
+                    console.log("Fim delivery");
                     stopWatchPosition();
                 });
             };
