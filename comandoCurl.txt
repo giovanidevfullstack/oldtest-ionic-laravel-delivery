@@ -1,0 +1,24 @@
+curl "https://api.ionic.io/push/notifications" -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNzg2ZjY0Mi0wYWVlLTRiNDUtYjdjZi01ZTljYjgzOTBjMDUifQ.TBJbcZrprg0aDA0csOqK5KaVFvk5WZnhDyBlmHx-xNI" -H "Content-Type: application/json" -d @- << EOF
+{
+"tokens": ["DEV-9579020a-aa3d-40b5-817e-771fa1756172"],
+"profile": "android_profile",
+"notification": {"message":"Seu pedido foi entregue"}
+}
+EOF
+
+________________________________________
+
+curl "https://api.ionic.io/push/notifications" -X POST -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIxNzg2ZjY0Mi0wYWVlLTRiNDUtYjdjZi01ZTljYjgzOTBjMDUifQ.TBJbcZrprg0aDA0csOqK5KaVFvk5WZnhDyBlmHx-xNI" -H "Content-Type: application/json" -d @- << EOF
+{
+"tokens": ["DEV-9579020a-aa3d-40b5-817e-771fa1756172"],
+"profile": "android_profile",
+"notification": 
+	{
+		"message":
+			{
+				"title":"Entrega",
+				"text":"Seu pedido foi entregue!"
+			}
+	}
+}
+EOF
